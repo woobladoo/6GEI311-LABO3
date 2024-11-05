@@ -65,18 +65,32 @@ def find_cours_by_tags():
 @app.route('/cours/seance', methods=['POST'])
 def create_seance():
     global current_seance_id
-    data = request.get_json()
-    coursID = request.args.get('coursID')
-    if not coursID or not data or 'title' not in data or 'weekNumber' not in data or 'theme' not in data:
-        abort(400, "Invalid data or missing coursID")
 
+    # Get JSON data from the request
+    data = request.get_json()
+
+    # Check if data is valid and all required fields are present
+    if not data:
+        abort(400, "Missing JSON data")
+    if 'coursID' not in data or 'title' not in data or 'weekNumber' not in data or 'theme' not in data:
+        abort(400, "Invalid data or missing fields (coursID, title, weekNumber, theme)")
+    
+    # Validate and parse coursID
+    try:
+        coursID = int(data['coursID'])
+    except ValueError:
+        abort(400, "coursID must be an integer")
+
+    # Create the seance dictionary with validated data
     seance = {
         "id": current_seance_id,
         "title": data['title'],
         "weekNumber": data['weekNumber'],
         "theme": data['theme'],
-        "coursID": int(coursID)
+        "coursID": coursID
     }
+
+    # Store the new seance and increment the ID
     seances_data[current_seance_id] = seance
     current_seance_id += 1
     return jsonify(seance), 201
