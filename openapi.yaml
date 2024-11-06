@@ -11,8 +11,6 @@ info:
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
-servers:
-  - url: https://petstore3.swagger.io/api/v3
 tags:
   - name: cours
     description: operations pour les cours
