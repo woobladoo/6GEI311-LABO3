@@ -30,6 +30,55 @@
   ],
   "paths": {
     "/cours": {
+      "post": {
+        "tags": [
+          "cours"
+        ],
+        "summary": "Add a new cours",
+        "description": "Add a new cours",
+        "operationId": "addCours",
+        "requestBody": {
+          "description": "Create a new cours",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cours"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/cours"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cours"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/cours"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/cours/{coursID}": {
       "put": {
         "tags": [
           "cours"
@@ -80,55 +129,6 @@
           }
         }
       },
-      "post": {
-        "tags": [
-          "cours"
-        ],
-        "summary": "Add a new cours",
-        "description": "Add a new cours",
-        "operationId": "addCours",
-        "requestBody": {
-          "description": "Create a new cours",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/cours"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/cours"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/cours"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/cours"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "422": {
-            "description": "Validation exception"
-          }
-        }
-      }
-    },
-    "/cours/{coursID}": {
       "get": {
         "tags": [
           "cours"
