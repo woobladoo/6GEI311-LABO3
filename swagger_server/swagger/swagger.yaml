@@ -1,0 +1,205 @@
+---
+swagger: "2.0"
+info:
+  description: "Voici mon API REST pour gérer les cours, les séances et les fichiers\
+    \ associés à ceux-ci"
+  version: "1.0.11"
+  title: "API de gestion de contenu des cours en ligne"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "cours"
+  description: "operations pour les cours"
+- name: "seance"
+  description: "operations pour les séances"
+security:
+- api_key: []
+paths:
+  /cours:
+    post:
+      tags:
+      - "cours"
+      summary: "Add a new cours"
+      description: "Add a new cours"
+      operationId: "add_cours"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid input"
+        "422":
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.cours_controller"
+  /cours/{coursID}:
+    get:
+      tags:
+      - "cours"
+      summary: "Finds cours by ID"
+      description: "Finds a cours by its ID"
+      operationId: "find_cours_by_id"
+      parameters:
+      - name: "coursID"
+        in: "path"
+        description: "ID de cours"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid status value"
+      x-swagger-router-controller: "swagger_server.controllers.cours_controller"
+    put:
+      tags:
+      - "cours"
+      summary: "Modification d'un cours existant"
+      description: "Modification d'un cours existant"
+      operationId: "update_cours"
+      parameters:
+      - name: "coursID"
+        in: "path"
+        description: "ID de cours"
+        required: true
+      responses:
+        "200":
+          description: "Successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Cours not found"
+        "422":
+          description: "Validation exception"
+      x-swagger-router-controller: "swagger_server.controllers.cours_controller"
+    delete:
+      tags:
+      - "cours"
+      summary: "Delete cours"
+      description: "This can only be done by the logged in user."
+      operationId: "delete_cours"
+      parameters:
+      - name: "coursID"
+        in: "path"
+        description: "The coursID that needs to be deleted"
+        required: true
+      responses:
+        "200":
+          description: "Le cours a été supprimé avec succès"
+        "400":
+          description: "L'ID du cours est invalide"
+        "404":
+          description: "Cours not found"
+      x-swagger-router-controller: "swagger_server.controllers.cours_controller"
+  /cours/findByTags:
+    get:
+      tags:
+      - "cours"
+      summary: "Finds cours by tags"
+      description: "Multiple tags can be provided with comma-separated strings."
+      operationId: "find_cours_by_tags"
+      parameters:
+      - name: "tags"
+        in: "query"
+        description: "Tags to filter by"
+        required: false
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid tag value"
+      x-swagger-router-controller: "swagger_server.controllers.cours_controller"
+  /cours/seance:
+    post:
+      tags:
+      - "seance"
+      summary: "création d'une seance"
+      description: "création d'une seance"
+      operationId: "create_seance"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Cours not found"
+      x-swagger-router-controller: "swagger_server.controllers.seance_controller"
+  /cours/seance/findByModule:
+    get:
+      tags:
+      - "seance"
+      summary: "Trouver la séance selon un module spécifique"
+      description: "Trouver la séance selon un module spécifique"
+      operationId: "seance_find_by_module"
+      parameters:
+      - name: "Module"
+        in: "query"
+        description: "Nom du module"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Cours not found"
+      x-swagger-router-controller: "swagger_server.controllers.seance_controller"
+  /cours/seance/findBySemaine:
+    get:
+      tags:
+      - "seance"
+      summary: "Trouver la séance selon une semaine"
+      description: "Trouver la séance selon une semaine"
+      operationId: "seance_find_by_semaine"
+      parameters:
+      - name: "Semaine"
+        in: "query"
+        description: "Nombre de la semaine"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Cours not found"
+      x-swagger-router-controller: "swagger_server.controllers.seance_controller"
+  /cours/seance/{seanceID}:
+    get:
+      tags:
+      - "seance"
+      summary: "Trouver une seance selon ID spécifique"
+      description: "Trouver une seance selon ID spécifique"
+      operationId: "find_seance"
+      parameters:
+      - name: "seanceID"
+        in: "path"
+        description: "ID de la seance"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Cours not found"
+      x-swagger-router-controller: "swagger_server.controllers.seance_controller"
+    delete:
+      tags:
+      - "seance"
+      summary: "Suppression d'une seance d'un cours"
+      description: "Suppression d'une séance"
+      operationId: "delete_seance"
+      parameters:
+      - name: "seanceID"
+        in: "query"
+        description: "ID de la seance"
+        required: true
+      responses:
+        "400":
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.seance_controller"
+definitions: {}
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
