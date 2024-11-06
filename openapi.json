@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.3",
+  "swagger": "2.0",
   "info": {
     "title": "API de gestion de contenu des cours en ligne",
     "description": "Voici mon API REST pour gérer les cours, les séances et les fichiers associés à ceux-ci",
