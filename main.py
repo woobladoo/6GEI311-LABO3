@@ -1,3 +1,42 @@
+##
+# @mainpage Page principale
+#
+# @section description_main Description
+# Documentation du laboratoire 3 pour apprendre l'utilisation de Doxigen dans les manipulations du laboratoire 4.
+#
+# @section notes_main Notes
+# - Ajout de notes supplémentaires au projet.
+#
+# Copyright (c) 2024 UQAC. Tous droits réservés.
+
+
+##
+# @file main.py
+#
+# @brief Fichier python __main__.py.
+#
+# @section description_main Description
+# Le fichier main.py est le fichier de serveur que j'ai conçu pour le laboratoire 3. Celui-ci contient les routes et les différentes manipulations que celles-ci effectuent.
+#
+# @section libs_main Dépendances/Modules
+# - Dépendances ici (par exemple requierements.txt)
+#   - liste des dependances
+#       - ...
+#
+# @section notes_main Notes
+# - Notes supplémentaires.
+#
+# @section todo_main TODO
+# - Liste de choses a completer ...
+#
+# @section auteur_main Auteur(s)
+# - Maxime Simard Étudiant.
+#
+# @section sections_main Sections...
+# - Plusieurs autres sections peuvent être inserées a l'aide du decorateur "@section"
+#
+# Copyright (c) 2024 UQAC. Tous droits réservés.
+
 from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
@@ -66,22 +105,22 @@ def find_cours_by_tags():
 def create_seance():
     global current_seance_id
 
-    # Get JSON data from the request
+    # Obtines json data de la requête
     data = request.get_json()
 
-    # Check if data is valid and all required fields are present
+    # vérifie si les données sont valides et si tous les données sont présentes
     if not data:
         abort(400, "Missing JSON data")
     if 'coursID' not in data or 'title' not in data or 'weekNumber' not in data or 'theme' not in data:
         abort(400, "Invalid data or missing fields (coursID, title, weekNumber, theme)")
     
-    # Validate and parse coursID
+    # validation du cours id
     try:
         coursID = int(data['coursID'])
     except ValueError:
         abort(400, "coursID must be an integer")
 
-    # Create the seance dictionary with validated data
+    # création de la seance
     seance = {
         "id": current_seance_id,
         "title": data['title'],
@@ -90,7 +129,7 @@ def create_seance():
         "coursID": coursID
     }
 
-    # Store the new seance and increment the ID
+    # stock la séance et incrémente le id
     seances_data[current_seance_id] = seance
     current_seance_id += 1
     return jsonify(seance), 201

@@ -1,3 +1,42 @@
+##
+# @mainpage Page principale
+#
+# @section description_main Description
+# Documentation du laboratoire 3 pour apprendre l'utilisation de Doxigen dans les manipulations du laboratoire 4.
+#
+# @section notes_main Notes
+# - Ajout de notes supplémentaires au projet.
+#
+# Copyright (c) 2024 UQAC. Tous droits réservés.
+
+
+##
+# @file serveur/swagger_server/controllers/seance_controller.py
+#
+# @brief Fichier python client.py.
+#
+# @section description_main Description
+# Le fichier client.py est le fichier de client python que j'ai écrit pour le laboratoire 3. Celui-ci appel tous les routes de mon API pour pouvoir tester leurs fonctionnements.
+#
+# @section libs_main Dépendances/Modules
+# - Dépendances ici (par exemple requierements.txt)
+#   - liste des dependances
+#       - ...
+#
+# @section notes_main Notes
+# - Notes supplémentaires.
+#
+# @section todo_main TODO
+# - Liste de choses a completer ...
+#
+# @section auteur_main Auteur(s)
+# - Maxime Simard Étudiant.
+#
+# @section sections_main Sections...
+# - Plusieurs autres sections peuvent être inserées a l'aide du decorateur "@section"
+#
+# Copyright (c) 2024 UQAC. Tous droits réservés.
+
 import connexion
 import six
 
